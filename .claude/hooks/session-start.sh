@@ -167,7 +167,19 @@ if [[ -f "$TASKS_FILE" ]]; then
     fi
 fi
 
-# 5. Working Preferences
+# 5. Warm Insights (validating patterns — between Hot captures and Cold patterns)
+WARM_FILE="$CLAUDE_DIR/System/Memory/Warm.md"
+if [[ -f "$WARM_FILE" ]]; then
+    WARM_COUNT=$(grep -c "^## " "$WARM_FILE" 2>/dev/null || echo "0")
+    if [[ "$WARM_COUNT" -gt 0 ]]; then
+        echo "--- Warm Insights ($WARM_COUNT validating) ---"
+        grep -A2 "^## " "$WARM_FILE" | grep "^\*\*Pattern:\*\*" | sed 's/\*\*Pattern:\*\* /• /' | head -5
+        echo "---"
+        echo ""
+    fi
+fi
+
+# 6. Working Preferences (Cold — stable)
 if [[ -f "$PREFERENCES_FILE" ]]; then
     PREF_COUNT=$(grep -c "^### " "$PREFERENCES_FILE" 2>/dev/null || echo "0")
     if [[ "$PREF_COUNT" -gt 0 ]]; then
@@ -178,7 +190,7 @@ if [[ -f "$PREFERENCES_FILE" ]]; then
     fi
 fi
 
-# 6. Active Mistake Patterns
+# 7. Active Mistake Patterns (Cold — stable)
 if [[ -f "$MISTAKES_FILE" ]]; then
     PATTERN_COUNT=$(grep -c "^### " "$MISTAKES_FILE" 2>/dev/null || echo "0")
     if [[ "$PATTERN_COUNT" -gt 0 ]]; then
@@ -189,8 +201,28 @@ if [[ -f "$MISTAKES_FILE" ]]; then
     fi
 fi
 
-# 7. Recent Learnings — removed from startup (redundant with Pending Learnings nudge)
-# Available on-demand via /dex-whats-new --learnings
+# 8. Recent Learnings
+if [[ -d "$LEARNINGS_DIR" ]]; then
+    FOUND_LEARNINGS=0
+    for file in "$LEARNINGS_DIR"/*.md; do
+        if [[ -f "$file" ]]; then
+            filename=$(basename "$file" .md)
+            recent=$(grep -E "## .* — 202[0-9]-[0-9]{2}-[0-9]{2}" "$file" 2>/dev/null | tail -2)
+            if [[ -n "$recent" ]]; then
+                if [[ $FOUND_LEARNINGS -eq 0 ]]; then
+                    echo "--- Recent Learnings ---"
+                    FOUND_LEARNINGS=1
+                fi
+                echo "[$filename]"
+                echo "$recent"
+            fi
+        fi
+    done
+    if [[ $FOUND_LEARNINGS -eq 1 ]]; then
+        echo "---"
+        echo ""
+    fi
+fi
 
 # 8. Pending Claude Code Updates
 CHANGELOG_PENDING="$CLAUDE_DIR/System/changelog-updates-pending.md"
