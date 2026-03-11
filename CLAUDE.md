@@ -221,12 +221,18 @@ When the user says they completed a task (any phrasing):
    - Project/company pages
    - Adds completion timestamp (e.g., `✅ 2026-01-28 14:35`)
 5. Confirm to user: "Done! Marked complete in [list locations] at [timestamp]"
+6. **Capture outcome signal (lightweight):** For P0/P1 tasks, ask one quick question:
+   > "How did it go? ✅ As expected / ⚠️ Harder than expected / ❌ Blocked"
+   - **✅ As expected:** No action needed.
+   - **⚠️ Harder than expected** or **❌ Blocked/abandoned:** Ask "What happened?" (one sentence). Append to `System/Memory/Signals.md` and auto-create a Hot learning in today's `System/Session_Learnings/YYYY-MM-DD.md`.
+   - **Skip signal capture for:** P2 tasks, quick tasks (< 30 min estimated), or if user seems busy/in flow.
 
 **Key points:**
 - Accept any natural phrasing - be smart about parsing intent
 - If multiple tasks match, ask for clarification
 - If no task ID exists (legacy task), update the source file only and note that future tasks will sync everywhere
 - Don't require exact task title - use fuzzy matching on keywords
+- Signal capture is one quick question — never a form, never blocking
 
 ### Career Evidence Capture
 If `05-Areas/Career/` folder exists, the system automatically captures career development evidence:
@@ -290,10 +296,11 @@ Learnings are captured during the daily review process. When the user runs `/rev
 ```markdown
 ## [HH:MM] - [Short title]
 
-**What happened:** [Specific situation]  
-**Why it matters:** [Impact on system/workflow]  
-**Suggested fix:** [Specific action with file paths]  
-**Status:** pending
+**What happened:** [Specific situation]
+**Why it matters:** [Impact on system/workflow]
+**Suggested fix:** [Specific action with file paths]
+**Status:** pending | → warm | → cold
+**Signal source:** task-completion | observation | user-stated  (optional)
 
 ---
 ```
@@ -301,6 +308,22 @@ Learnings are captured during the daily review process. When the user runs `/rev
 3. **Tell the user** how many learnings you captured, then ask if they want to add more
 
 This happens during `/review` - you don't need to capture learnings silently during the session. The review process handles it systematically.
+
+### Memory Tiers (Hot → Warm → Cold)
+
+Learnings move through three tiers as they become validated:
+
+| Tier | File | Status | Reviewed |
+|------|------|--------|----------|
+| **Hot** | `System/Session_Learnings/YYYY-MM-DD.md` | pending | Daily (during `/daily-review`) |
+| **Warm** | `System/Memory/Warm.md` | validating | Weekly (during `/week-review`) |
+| **Cold** | `06-Resources/Learnings/Mistake_Patterns.md` + `Working_Preferences.md` | stable | Monthly |
+
+**Hot → Warm:** Promote during `/daily-review` when a learning appears 2+ times or you say "this feels like a pattern." Tag in the learning with `→ warm` and append an entry to `System/Memory/Warm.md`.
+
+**Warm → Cold:** Promote during `/week-review` when a Warm insight has 3+ instances or has been actively applied for 2 weeks. Move to `Mistake_Patterns.md` (behavioral) or `Working_Preferences.md` (preference).
+
+**Session start surfaces:** Cold (always) + Warm (when entries exist).
 
 ### Background Self-Learning Automation
 

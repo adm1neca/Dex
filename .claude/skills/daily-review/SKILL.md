@@ -255,7 +255,18 @@ For each planned focus item:
 > 
 > What happened with #3? Should it carry to tomorrow?"
 
-### 3.4 Track Over Time (Optional)
+### 3.4 Outcome Signals for Incomplete/Deferred Items
+
+For each planned item that was **not completed** (❌ or 🔄 significantly behind):
+
+> "What happened with [item]? (quick: ⚠️ harder than expected / ❌ blocked / 🔀 deprioritized)"
+
+- **⚠️ or ❌:** Ask "What made it hard?" (one sentence) → append to `System/Memory/Signals.md` and create a Hot learning in today's Session_Learnings file.
+- **🔀 Deprioritized:** Note it — no signal needed.
+
+This is lightweight — one question per incomplete item, not a debrief.
+
+### 3.5 Track Over Time (Optional)
 
 If tracking completion rates:
 - Update `System/metrics/daily-completion.md` with today's rate
@@ -341,13 +352,34 @@ Then ask: "I captured [N] learnings from today's session. Anything else you'd li
 
 ---
 
-## Step 8: Categorize Learnings (If Applicable)
+## Step 8: Categorize Learnings — Three-Tier Promotion
 
-Check if any learnings should be elevated to pattern files:
-- **Recurring mistakes** → `06-Resources/Learnings/Mistake_Patterns.md`
-- **Workflow preferences** → `06-Resources/Learnings/Working_Preferences.md`
+For each learning captured in Step 7, assess its tier:
 
-Get user confirmation before adding.
+**Hot (stay):** Single occurrence, uncertain if pattern, needs more evidence. Keep in Session_Learnings with `Status: pending`.
+
+**Promote to Warm:** If the learning appeared 2+ times this session/week, or the user says "this keeps happening" / "this feels like a pattern":
+1. Tag the Session_Learnings entry: `Status: → warm`
+2. Append to `System/Memory/Warm.md`:
+   ```
+   ## [slug] — [Title]
+   **Added:** YYYY-MM-DD
+   **Instances:** [N]
+   **Last seen:** YYYY-MM-DD
+   **Status:** validating
+   **Pattern:** [What to do differently]
+   **Evidence:**
+   - [YYYY-MM-DD] [Situation]
+   **Promote to Cold when:** [Condition]
+   **Source:** Session_Learnings/YYYY-MM-DD.md
+   ```
+3. Tell user: "Promoted to Warm — I'll watch for this pattern."
+
+**Promote to Cold (skip Warm):** If a learning is already well-understood and clearly stable:
+- Behavioral: → `06-Resources/Learnings/Mistake_Patterns.md`
+- Preference: → `06-Resources/Learnings/Working_Preferences.md`
+
+Get user confirmation before adding to Warm or Cold.
 
 ---
 
