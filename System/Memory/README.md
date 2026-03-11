@@ -42,6 +42,28 @@ COLD  → 06-Resources/Learnings/Mistake_Patterns.md
 
 ---
 
+## Warm.md Entry Template
+
+Copy this when adding a new Warm insight:
+
+```markdown
+## slug — Short title
+
+**Added:** YYYY-MM-DD
+**Instances:** 1
+**Last seen:** YYYY-MM-DD
+**Status:** validating
+**Pattern:** [What to do differently — one sentence]
+**Evidence:**
+- [YYYY-MM-DD] [Specific situation that generated this]
+- [YYYY-MM-DD] [Second instance]
+
+**Promote to Cold when:** [Has happened X more times / confirmed by Y / applied for 2 weeks]
+**Source:** Session_Learnings/YYYY-MM-DD.md
+
+---
+```
+
 ## Files
 
 - `Warm.md` — Active Warm tier insights
