@@ -474,6 +474,7 @@ Skills extend Dex capabilities and are invoked with `/skill-name`. Common skills
 - `/daily-plan`, `/daily-review` - Daily workflow
 - `/week-plan`, `/week-review` - Weekly workflow
 - `/quarter-plan`, `/quarter-review` - Quarterly planning
+- `/telos` - Review and update deep goal documentation (mission, beliefs, strategies, challenges)
 - `/triage`, `/meeting-prep`, `/process-meetings` - Meetings and inbox
 - `/project-health`, `/product-brief` - Projects
 - `/career-coach`, `/resume-builder` - Career development
@@ -509,7 +510,9 @@ Dex uses the PARA method: Projects (time-bound), Areas (ongoing), Resources (ref
 - `01-Quarter_Goals/Quarter_Goals.md` - Quarterly goals (optional)
 - `02-Week_Priorities/Week_Priorities.md` - Weekly priorities
 
-**Planning hierarchy:** Pillars → Quarter Goals → Week Priorities → Daily Plans → Tasks
+**Planning hierarchy:** TELOS (Mission/Goals) → Pillars → Quarter Goals → Week Priorities → Daily Plans → Tasks
+
+**TELOS** (optional, deep goal layer): `01-Quarter_Goals/TELOS/` — 10 files capturing mission, long-term goals, beliefs, mental models, strategies, narratives, lessons, challenges, ideas, and strategic projects. Adapted from Daniel Miessler's Personal AI Infrastructure. Run `/telos` to review and fill in.
 
 **Complete details:** See `06-Resources/Dex_System/Folder_Structure.md`
 

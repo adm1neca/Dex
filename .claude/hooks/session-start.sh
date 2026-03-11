@@ -58,6 +58,20 @@ echo ""
 
 # STRATEGIC HIERARCHY (Top-Down)
 
+# 0. TELOS — Mission layer (if filled in)
+TELOS_DIR="$CLAUDE_DIR/01-Quarter_Goals/TELOS"
+TELOS_MISSION="$TELOS_DIR/MISSION.md"
+if [[ -f "$TELOS_MISSION" ]]; then
+    # Only show if user has filled in content (skip if just template comments)
+    MISSION_TEXT=$(grep -v "^>" "$TELOS_MISSION" | grep -v "^#" | grep -v "^---" | grep -v "^\*Last" | grep -v "^<!--" | grep -v "^$" | grep -v "^\-$" | head -2)
+    if [[ -n "$MISSION_TEXT" ]]; then
+        echo "--- Mission (TELOS) ---"
+        echo "$MISSION_TEXT"
+        echo "---"
+        echo ""
+    fi
+fi
+
 # 1. Strategic Pillars
 if [[ -f "$PILLARS_FILE" ]]; then
     echo "--- Strategic Pillars ---"
