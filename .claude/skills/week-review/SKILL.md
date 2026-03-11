@@ -24,8 +24,10 @@ Create a synthesis of the week reviewing activity, progress, and what was accomp
 - `People/**/*.md` — Person pages updated
 
 ### 4. Learnings
-- `06-Resources/Learnings/**/*.md` — Explicit learnings
-- `System/Session_Learnings/*.md` — Auto-captured session learnings
+- `06-Resources/Learnings/**/*.md` — Cold tier (stable patterns)
+- `System/Memory/Warm.md` — Warm tier (validating insights, need promotion review)
+- `System/Memory/Signals.md` — Task outcome signals from this week
+- `System/Session_Learnings/*.md` — Hot tier (raw daily captures)
 
 ### 5. Daily Reviews
 - `07-Archives/Reviews/Daily_Review_YYYY-MM-DD.md` — This week's reviews

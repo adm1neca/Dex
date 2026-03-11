@@ -124,7 +124,7 @@ if [[ -f "$WARM_FILE" ]]; then
     WARM_COUNT=$(grep -c "^## " "$WARM_FILE" 2>/dev/null || echo "0")
     if [[ "$WARM_COUNT" -gt 0 ]]; then
         echo "--- Warm Insights ($WARM_COUNT validating) ---"
-        grep -A2 "^## " "$WARM_FILE" | grep "^\*\*Pattern:\*\*" | sed 's/\*\*Pattern:\*\* /• /' | head -5
+        grep "^\*\*Pattern:\*\*" "$WARM_FILE" | sed 's/\*\*Pattern:\*\* /• /' | head -5
         echo "---"
         echo ""
     fi
