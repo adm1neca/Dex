@@ -24,8 +24,10 @@ Create a synthesis of the week reviewing activity, progress, and what was accomp
 - `People/**/*.md` — Person pages updated
 
 ### 4. Learnings
-- `06-Resources/Learnings/**/*.md` — Explicit learnings
-- `System/Session_Learnings/*.md` — Auto-captured session learnings
+- `06-Resources/Learnings/**/*.md` — Cold tier (stable patterns)
+- `System/Memory/Warm.md` — Warm tier (validating insights, need promotion review)
+- `System/Memory/Signals.md` — Task outcome signals from this week
+- `System/Session_Learnings/*.md` — Hot tier (raw daily captures)
 
 ### 5. Daily Reviews
 - `07-Archives/Reviews/Daily_Review_YYYY-MM-DD.md` — This week's reviews
@@ -223,23 +225,45 @@ Surface in the review:
 
 If unhealthy or not enabled: skip this section silently.
 
-### 6. Learning Compilation & Pattern Detection
+### 6. Learning Compilation & Memory Tier Review
 
-Review `System/Session_Learnings/` files from this week:
+#### 6.1 Hot → Warm Promotion
 
-**Pattern Detection:**
-- **Recurring issues:** Same mistake 2+ times? Suggest adding to Mistake_Patterns.md
-- **Consistent preferences:** User repeatedly mentioned a workflow preference?
+Review `System/Session_Learnings/` files from this week. For each learning still at `Status: pending`:
 
-> "This week's session learnings revealed:
-> 
-> **Recurring Issues:**
-> - Calendar overload (mentioned 3 times) — Consider blocking focus time
-> 
-> **Workflow Preferences:**
-> - Prefer morning for deep work (mentioned 2 times)
-> 
-> Should I add these to your pattern files?"
+- **Seen 2+ times this week** → Promote to Warm
+- **Tagged `→ warm` during daily-review** → Confirm promotion
+- **Single occurrence, unclear pattern** → Leave as Hot
+
+For each Warm promotion: append to `System/Memory/Warm.md` (use the template in that file), update Session_Learnings entry to `Status: → warm`.
+
+> "From this week's sessions, I found 2 patterns worth moving to Warm:
+>
+> ⚠️ **Calendar overload** (mentioned 3 times) — Suggested Warm insight: 'Block focus time before accepting meetings'
+> ⚠️ **Morning deep work preference** (mentioned 2 times) — Suggested Warm insight: 'Prefer morning for deep work tasks'
+>
+> Promote these to Warm? (They'll show at session start and be reviewed again next week)"
+
+#### 6.2 Warm → Cold Promotion
+
+Read `System/Memory/Warm.md`. For each entry:
+- **3+ instances OR actively applied for 2+ weeks** → Offer Cold promotion
+- **Not yet validated** → Leave in Warm, increment "Last seen"
+
+For Cold promotion, ask:
+> "**[Warm Insight Title]** has been validated (N instances, X weeks). Ready to make it permanent?
+> - Behavioral change → `Mistake_Patterns.md`
+> - Working preference → `Working_Preferences.md`"
+
+After user confirms: append to the appropriate Cold file, remove from `Warm.md`, write to Session_Learnings as `Status: → cold`.
+
+#### 6.3 Outcome Signal Review
+
+Read `System/Memory/Signals.md` for this week's entries. Surface any patterns:
+- Same type of task consistently harder than expected → Suggest planning adjustment
+- Repeated blockers → Suggest systemic fix or task template change
+
+> "Signal patterns this week: 3 tasks flagged ⚠️ harder than expected — all were tasks with unclear success criteria upfront. Consider adding 'What does done look like?' as a step before starting P0 tasks."
 
 ---
 

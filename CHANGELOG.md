@@ -7,6 +7,53 @@ All notable changes to Dex will be documented in this file.
 
 ---
 
+## [1.19.0] — Hot/Warm/Cold Memory Tiers + Learning Signal Capture (2026-03-11)
+
+Two features from PAI's learning architecture, adapted to fit Dex's existing session learning system.
+
+**The problem:** Session learnings accumulated in daily files but had no clear path to becoming stable behavior-shaping patterns. Everything was either raw captures (hot) or manually-promoted cold patterns — with nothing in between.
+
+**What's new:**
+
+**Memory Tiers (Hot → Warm → Cold):**
+- **Hot** (`System/Session_Learnings/`) — unchanged, but learnings now have a `Status` field: `pending | → warm | → cold`
+- **Warm** (`System/Memory/Warm.md`) — new intermediate tier for patterns seen 2+ times but not yet validated. Surfaced at session start alongside Cold patterns.
+- **Cold** (`06-Resources/Learnings/Mistake_Patterns.md` + `Working_Preferences.md`) — stable, validated patterns (unchanged files, clearer promotion path)
+- Promotion happens during `/daily-review` (Hot → Warm) and `/week-review` (Warm → Cold) — guided, not automatic
+
+**Learning Signal Capture:**
+- After completing P0/P1 tasks: one quick outcome question (✅ / ⚠️ / ❌)
+- If ⚠️ or ❌: one follow-up sentence → auto-creates a Hot learning + logs to `System/Memory/Signals.md`
+- `/week-review` now scans Signals for patterns (e.g., "3 tasks ⚠️ harder than expected — all had unclear success criteria")
+- P2 tasks and quick tasks are skipped — not annoying
+
+**What you'll see differently:**
+- Session start now shows Warm insights (between Cold preferences and Cold mistake patterns)
+- `/daily-review` Step 8 is now a three-tier categorization flow
+- `/week-review` has a full memory tier review section (Hot → Warm promotions, Warm → Cold confirmations, signal pattern analysis)
+
+---
+
+## [1.18.0] — TELOS: Deep Goal Layer from Personal AI Infrastructure (2026-03-11)
+
+Your quarterly goals now have a "why" layer above them. TELOS is a 10-file goal documentation system — adapted from Daniel Miessler's [Personal AI Infrastructure](https://github.com/danielmiessler/Personal_AI_Infrastructure) — that captures your mission, long-term goals, beliefs, mental models, strategies, and more.
+
+The problem it solves: quarterly planning often starts from "what's urgent" instead of "what actually matters." TELOS anchors planning to your deeper intent so your 90-day goals trace back to where you're actually trying to go.
+
+**What's new:**
+- `01-Quarter_Goals/TELOS/` folder with 10 pre-built templates (MISSION, GOALS, PROJECTS, BELIEFS, MODELS, STRATEGIES, NARRATIVES, LEARNED, CHALLENGES, IDEAS)
+- `/telos` skill — dashboard view of fill-in status, guided fill-in, and alignment checking against quarterly goals
+- `/quarter-plan` now reads TELOS MISSION and GOALS to anchor goal-setting conversations
+- Session start now surfaces your mission (when filled in) at the top of context
+- Planning hierarchy updated: TELOS → Pillars → Quarter Goals → Week Priorities → Daily Plans → Tasks
+
+**How to use it:**
+- Run `/telos` to see the dashboard and start filling in files
+- Minimum useful setup: MISSION + GOALS + CHALLENGES (15-20 min)
+- TELOS is optional — quarterly planning works without it, and becomes more intentional with it
+
+---
+
 ## [1.17.0] — Mobile Meeting Recordings Now Sync Automatically (2026-03-01)
 
 If you record meetings on your phone with Granola, those recordings now appear in Dex alongside your desktop meetings. No manual import, no extra steps — they just show up.

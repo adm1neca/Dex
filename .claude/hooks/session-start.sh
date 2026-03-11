@@ -58,6 +58,20 @@ echo ""
 
 # STRATEGIC HIERARCHY (Top-Down)
 
+# 0. TELOS — Mission layer (if filled in)
+TELOS_DIR="$CLAUDE_DIR/01-Quarter_Goals/TELOS"
+TELOS_MISSION="$TELOS_DIR/MISSION.md"
+if [[ -f "$TELOS_MISSION" ]]; then
+    # Only show if user has filled in content (skip if just template comments)
+    MISSION_TEXT=$(grep -v "^>" "$TELOS_MISSION" | grep -v "^#" | grep -v "^---" | grep -v "^\*Last" | grep -v "^<!--" | grep -v "^$" | grep -v "^\-$" | head -2)
+    if [[ -n "$MISSION_TEXT" ]]; then
+        echo "--- Mission (TELOS) ---"
+        echo "$MISSION_TEXT"
+        echo "---"
+        echo ""
+    fi
+fi
+
 # 1. Strategic Pillars
 if [[ -f "$PILLARS_FILE" ]]; then
     echo "--- Strategic Pillars ---"
@@ -104,7 +118,19 @@ if [[ -f "$TASKS_FILE" ]]; then
     fi
 fi
 
-# 5. Working Preferences
+# 5. Warm Insights (validating patterns — between Hot captures and Cold patterns)
+WARM_FILE="$CLAUDE_DIR/System/Memory/Warm.md"
+if [[ -f "$WARM_FILE" ]]; then
+    WARM_COUNT=$(grep -c "^## " "$WARM_FILE" 2>/dev/null || echo "0")
+    if [[ "$WARM_COUNT" -gt 0 ]]; then
+        echo "--- Warm Insights ($WARM_COUNT validating) ---"
+        grep "^\*\*Pattern:\*\*" "$WARM_FILE" | sed 's/\*\*Pattern:\*\* /• /' | head -5
+        echo "---"
+        echo ""
+    fi
+fi
+
+# 6. Working Preferences (Cold — stable)
 if [[ -f "$PREFERENCES_FILE" ]]; then
     PREF_COUNT=$(grep -c "^### " "$PREFERENCES_FILE" 2>/dev/null || echo "0")
     if [[ "$PREF_COUNT" -gt 0 ]]; then
@@ -115,7 +141,7 @@ if [[ -f "$PREFERENCES_FILE" ]]; then
     fi
 fi
 
-# 6. Active Mistake Patterns
+# 7. Active Mistake Patterns (Cold — stable)
 if [[ -f "$MISTAKES_FILE" ]]; then
     PATTERN_COUNT=$(grep -c "^### " "$MISTAKES_FILE" 2>/dev/null || echo "0")
     if [[ "$PATTERN_COUNT" -gt 0 ]]; then
@@ -126,7 +152,7 @@ if [[ -f "$MISTAKES_FILE" ]]; then
     fi
 fi
 
-# 7. Recent Learnings
+# 8. Recent Learnings
 if [[ -d "$LEARNINGS_DIR" ]]; then
     FOUND_LEARNINGS=0
     for file in "$LEARNINGS_DIR"/*.md; do
