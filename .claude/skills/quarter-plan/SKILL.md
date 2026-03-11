@@ -86,6 +86,24 @@ Store:
 
 ## Step 2: Context Gathering
 
+### Check TELOS (if available)
+
+Look for `01-Quarter_Goals/TELOS/` folder:
+
+**If exists, read:**
+- `MISSION.md` — Surface the mission statement as a planning anchor
+- `GOALS.md` — Extract 1-year and 3-year goals to ensure quarterly goals advance them
+- `CHALLENGES.md` — Note active obstacles that should be addressed this quarter
+- `STRATEGIES.md` — Check if this quarter's goals align with current strategies
+
+**Use in Step 3 as context:**
+> "Your mission: [mission text]. Your 1-year goals include: [goals]. These quarterly goals should advance at least one of them."
+
+**If TELOS not filled in:**
+- Skip silently — quarterly planning works without it
+
+---
+
 ### Check for Last Quarter's Review
 
 Look for `07-Archives/Reviews/[last-quarter].md`:
@@ -172,16 +190,24 @@ Wait for user input.
 > 
 > Keep these in mind as we plan this quarter — your quarterly goals should advance your career goals.
 
+**If TELOS MISSION exists, add:**
+
+> **Your mission:** [mission text from TELOS/MISSION.md]
+>
+> **1-year goals:** [goals from TELOS/GOALS.md]
+>
+> Keep these in mind — your quarterly goals should advance at least one of them.
+
 **Then continue:**
 
 > **Let's work backwards from impact:**
-> 
+>
 > Imagine it's [Quarter End Date] and you're looking back on this quarter feeling incredibly happy with what you accomplished.
-> 
+>
 > - What outcomes would accelerate your career and impact in your current role?
 > - What would you be proud to have delivered?
 > - What would matter most to the people you serve?
-> 
+>
 > What are the 3-5 most important outcomes you want this quarter?"
 
 ### Guide Goal Definition

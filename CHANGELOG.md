@@ -7,6 +7,26 @@ All notable changes to Dex will be documented in this file.
 
 ---
 
+## [1.18.3] — TELOS: Deep Goal Layer from Personal AI Infrastructure (2026-03-11)
+
+Your quarterly goals now have a "why" layer above them. TELOS is a 10-file goal documentation system — adapted from Daniel Miessler's [Personal AI Infrastructure](https://github.com/danielmiessler/Personal_AI_Infrastructure) — that captures your mission, long-term goals, beliefs, mental models, strategies, and more.
+
+The problem it solves: quarterly planning often starts from "what's urgent" instead of "what actually matters." TELOS anchors planning to your deeper intent so your 90-day goals trace back to where you're actually trying to go.
+
+**What's new:**
+- `01-Quarter_Goals/TELOS/` folder with 10 pre-built templates (MISSION, GOALS, PROJECTS, BELIEFS, MODELS, STRATEGIES, NARRATIVES, LEARNED, CHALLENGES, IDEAS)
+- `/telos` skill — dashboard view of fill-in status, guided fill-in, and alignment checking against quarterly goals
+- `/quarter-plan` now reads TELOS MISSION and GOALS to anchor goal-setting conversations
+- Session start now surfaces your mission (when filled in) at the top of context
+- Planning hierarchy updated: TELOS → Pillars → Quarter Goals → Week Priorities → Daily Plans → Tasks
+
+**How to use it:**
+- Run `/telos` to see the dashboard and start filling in files
+- Minimum useful setup: MISSION + GOALS + CHALLENGES (15-20 min)
+- TELOS is optional — quarterly planning works without it, and becomes more intentional with it
+
+---
+
 ## [1.18.2] — Fix Background Meeting Sync Installation (2026-03-12)
 
 `install-automation.sh` failed because it referenced two files that no longer exist: `granola-auth.cjs` (deprecated — Granola now stores credentials in `supabase.json` automatically) and `sync-from-granola-v2.cjs` (never shipped — v1 works fine).
