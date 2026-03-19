@@ -107,6 +107,21 @@ At the start of any conversation, silently call `get_pending_update_notification
 - After `/dex-update` succeeds, the notification file is cleared automatically
 - If the MCP call fails (network, server not running), skip silently — never error on update checks
 
+### GitHub Intel (Daily Background Scan)
+
+During `/daily-plan`, silently run a GitHub intel scan after loading calendar/task context.
+
+**Process:**
+1. Check if `System/github-intel.yaml` exists — if not, skip silently (user hasn't configured it yet)
+2. Run `/github-intel-custom --scan` (compact mode)
+3. If new repos are found, surface them in the daily plan output under a brief `🔭 GitHub Intel` section
+4. If nothing new, output nothing — truly silent
+
+**Rules:**
+- Never block or delay the daily plan to run this scan
+- Skip silently on any error (network, rate limit, missing config)
+- Compact output only — full details available via `/github-intel-custom`
+
 ### Proactive Improvement Capture (Innovation Concierge)
 
 When the user expresses frustration or wishes during natural conversation, capture it as a backlog idea:

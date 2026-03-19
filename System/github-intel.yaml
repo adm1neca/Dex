@@ -1,0 +1,28 @@
+# GitHub Intel — Your Interest Config
+# Edit this file to update what gets tracked, or run /github-intel-custom --config
+
+# GitHub topic slugs (from github.com/topics/{slug})
+# Find topics at: https://github.com/topics
+topics:
+  - llm
+  - ai-agents
+  - developer-tools
+  - personal-knowledge-management
+
+# Free-form keywords searched in repo name + description
+keywords:
+  - "MCP server"
+  - "model context protocol"
+
+# Minimum stars to surface (filters out noise / abandoned projects)
+min_stars: 50
+
+# Programming languages to focus on (empty = all languages)
+# Examples: [python, typescript, go, rust]
+languages: []
+
+# How many days back counts as "new" for each scan
+lookback_days: 7
+
+# Max repos to surface per scan (keeps output focused)
+max_per_scan: 8
